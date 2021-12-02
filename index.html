@@ -7,21 +7,42 @@
   <title>Restaurant Profitability</title>
   <style>
     html {
-      height: 100%;
+      width: 50%;
+      position: fixed;
+      top: 5%;
+      left: 25%;
+      right: 25%;
+    }
+
+    body {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.42857143;
+      color: #333;
+      background-color: #fff;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
     }
 
     #svg {
       border: 1px solid;
+
     }
   </style>
 </head>
 <body>
   <h1>Restaurant Profitability Visualization</h1>
-  <svg id="svg" width="1000" height="600"></svg>
+  <p>Project Brief...
+    This dataset contains a sample of 860 restaurant corporations in 18 EU countries. The dataset was designed to investigate factors that determine the profitability of 
+    restaurants using advanced measures of financial performance. Additionally, this visualization can play a role in business management -- describing not only financial
+    ratios, but also the macroeconomic conditions and tourism environment where these companies operate. 
+  </p>
+  <p>
+    Published 16 March 2020 - Data Source: <a href="https://www.kaggle.com/ryanholbrook/european-restaurant-profitability">https://www.kaggle.com/ryanholbrook/european-restaurant-profitability</a> 
+  </p>
+  
+  <svg id="svg" width="1200" height="700"></svg>
   <script src="www.d3js.org/d3.v7.min.js"></script>
   <script>
 
