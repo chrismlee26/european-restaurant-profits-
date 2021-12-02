@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant Profitability</title>
+  <style>
+    html {
+      width: 50%;
+      position: fixed;
+      top: 5%;
+      left: 25%;
+      right: 25%;
+    }
+
+    body {
+      /* font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.42857143;
+      color: #333;
+      background-color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center; */
+      margin: 0px;
+      overflow: hidden;
+    }
+
+  .sphere {
+    fill: #4242e4;
+  }
+
+  .country {
+    fill: lightgreen;
+    stroke: black;
+    stroke-opacity: 0.1;
+  }
+
+    #svg {
+      border: 1px solid;
+    }
+  </style>
+  <script src="https://unpkg.com/d3@5.6.0/dist/d3.min.js"></script>
+  <script src="https://unpkg.com/topojson@3.0.2/dist/topojson.min.js"></script>
+</head>
+<body>
+  <h1>Restaurant Profitability Visualization</h1>
+  <p>Project Brief...
+    This dataset contains a sample of 860 restaurant corporations in 18 EU countries. The dataset was designed to investigate factors that determine the profitability of 
+    restaurants using advanced measures of financial performance. Additionally, this visualization can play a role in business management -- describing not only financial
+    ratios, but also the macroeconomic conditions and tourism environment where these companies operate. 
+  </p>
+  <p>
+    Published 16 March 2020 - Data Source: <a href="https://www.kaggle.com/ryanholbrook/european-restaurant-profitability">https://www.kaggle.com/ryanholbrook/european-restaurant-profitability</a> 
+  </p>
+  
+  <!-- <svg id="svg" width="1200" height="700"></svg> -->
+  <svg width="960" height="500"></svg>
+  
+  <script src="bundle.js"></script>
+  <script src="www.d3js.org/d3.v7.min.js"></script>
+
+
+  <script>
+    import { select, json, geoPath, geoNaturalEarth1 } from 'd3';
+    import { feature } from 'topojson';
+    const svg = select('svg');
+    const projection = geoNaturalEarth1();
+    const pathGenerator = geoPath().projection(projection);
+    
+    svg.append('path')
+        .attr('class', 'sphere')
+        .attr('d', pathGenerator({type: 'Sphere'}));
+
+    json('https://unpkg.com/world-atlas@1.1.4/world/110m.json')
+      .then(data => {
+        const countries = feature(data, data.objects.countries);
+        svg.selectAll('path').data(countries.features)
+          .enter().append('path')
+            .attr('class', 'country')
+            .attr('d', pathGenerator);
+  });
+    
+  </script>
+</body>
+</html>
